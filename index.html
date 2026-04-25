@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Travel Gift</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ivory:       #FAF6F0;
+    --warm-brown:  #C4A882;
+    --dusty-rose:  #D4A99A;
+    --sage:        #A8B5A0;
+    --muted-sky:   #B8CCCC;
+    --text-dark:   #3D3530;
+    --text-mid:    #7A6A60;
+    --text-light:  #A89890;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    min-height: 100%;
+    width: 100%;
+  }
+
+  body {
+    background: #EDE8E0;
+    font-family: 'Jost', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 24px 16px;
+  }
+
+  /* ── CARD WRAPPER ── */
+  .card {
+    background: var(--ivory);
+    border-radius: 16px;
+    width: 100%;
+    max-width: 480px;
+    min-height: 580px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 16px 60px rgba(80, 60, 40, 0.15);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  /* ── WATERCOLOUR SVG BACKGROUND ── */
+  .watercolor-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+
+  /* ── TOP ACCENT BAR ── */
+  .top-bar {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--dusty-rose), var(--warm-brown), var(--sage), var(--muted-sky));
+    z-index: 3;
+  }
+
+  /* ── CONTENT LAYER ── */
+  .content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 56px 40px 52px;
+    gap: 0;
+    flex: 1;
+  }
+
+  /* ── SMALL DECORATIVE ICON ── */
+  .icon-wrap {
+    margin-bottom: 28px;
+    opacity: 0.55;
+  }
+
+  /* ── GIFT TITLE ── */
+  .gift-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 8vw, 52px);
+    font-weight: 400;
+    color: var(--text-dark);
+    letter-spacing: 0.04em;
+    text-align: center;
+    line-height: 1;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 20px 0;
+    width: 100%;
+    justify-content: center;
+  }
+  .divider-line {
+    width: 48px;
+    height: 1px;
+    background: var(--warm-brown);
+    opacity: 0.45;
+  }
+  .divider-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--dusty-rose);
+    opacity: 0.65;
+  }
+
+  /* ── WORTH AMOUNT ── */
+  .gift-worth {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 7vw, 42px);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--warm-brown);
+    text-align: center;
+    letter-spacing: 0.03em;
+  }
+
+  /* ── VALIDITY ── */
+  .validity {
+    font-family: 'Jost', sans-serif;
+    font-size: clamp(10px, 2.5vw, 12px);
+    font-weight: 300;
+    letter-spacing: 0.18em;
+    color: var(--text-light);
+    text-transform: uppercase;
+    text-align: center;
+    margin-top: 14px;
+  }
+
+  /* ── REACH OUT MESSAGE ── */
+  .reach-out-wrap {
+    margin-top: 40px;
+    border-left: 2px solid var(--dusty-rose);
+    padding-left: 18px;
+    align-self: flex-start;
+  }
+
+  .reach-out {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(16px, 4vw, 20px);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--text-mid);
+    line-height: 1.65;
+  }
+
+  /* ── PS FOOTNOTE ── */
+  .ps-wrap {
+    margin-top: 40px;
+    align-self: flex-start;
+  }
+
+  .ps {
+    font-family: 'Jost', sans-serif;
+    font-size: clamp(11px, 3vw, 13px);
+    font-weight: 300;
+    color: var(--text-mid);
+    letter-spacing: 0.05em;
+  }
+
+  .ps-label {
+    font-style: italic;
+    color: var(--dusty-rose);
+  }
+
+  /* ── RESPONSIVE TWEAKS ── */
+  @media (max-width: 360px) {
+    .content { padding: 48px 28px 44px; }
+  }
+
+  @media (min-width: 600px) {
+    .card { min-height: 620px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+
+  <!-- TOP GRADIENT BAR -->
+  <div class="top-bar"></div>
+
+  <!-- WATERCOLOUR BACKGROUND ILLUSTRATION -->
+  <!-- Hills, sky wash, birds — all subtle pastel watercolour style -->
+  <svg class="watercolor-bg" viewBox="0 0 480 580" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+    <defs>
+
+      <!-- Sky wash gradient -->
+      <linearGradient id="skyWash" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%"   stop-color="#B8CCCC" stop-opacity="0.18"/>
+        <stop offset="60%"  stop-color="#D4A99A" stop-opacity="0.06"/>
+        <stop offset="100%" stop-color="#FAF6F0" stop-opacity="0"/>
+      </linearGradient>
+
+      <!-- Far hills gradient -->
+      <linearGradient id="hillFar" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%"   stop-color="#A8B5A0" stop-opacity="0.22"/>
+        <stop offset="100%" stop-color="#A8B5A0" stop-opacity="0.06"/>
+      </linearGradient>
+
+      <!-- Mid hills gradient -->
+      <linearGradient id="hillMid" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%"   stop-color="#C4A882" stop-opacity="0.20"/>
+        <stop offset="100%" stop-color="#C4A882" stop-opacity="0.04"/>
+      </linearGradient>
+
+      <!-- Foreground gradient -->
+      <linearGradient id="hillFore" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%"   stop-color="#D4A99A" stop-opacity="0.18"/>
+        <stop offset="100%" stop-color="#D4A99A" stop-opacity="0.03"/>
+      </linearGradient>
+
+      <!-- Watercolour bleed filter -->
+      <filter id="blur-soft" x="-10%" y="-10%" width="120%" height="120%">
+        <feGaussianBlur stdDeviation="6"/>
+      </filter>
+
+      <!-- Gentle edge bleed filter for hills -->
+      <filter id="blur-edge" x="-5%" y="-5%" width="110%" height="110%">
+        <feGaussianBlur stdDeviation="3.5"/>
+      </filter>
+
+    </defs>
+
+    <!-- Sky colour wash -->
+    <rect x="0" y="0" width="480" height="580" fill="url(#skyWash)"/>
+
+    <!-- Sun / warm glow — watercolour bloom -->
+    <ellipse cx="370" cy="80" rx="55" ry="42" fill="#D4A99A" opacity="0.10" filter="url(#blur-soft)"/>
+    <ellipse cx="370" cy="80" rx="30" ry="24" fill="#D4A99A" opacity="0.12" filter="url(#blur-soft)"/>
+
+    <!-- Distant far hills — very soft sage -->
+    <path d="M-10,420 C40,340 100,310 160,330 C210,348 240,310 290,295 C340,280 390,305 440,290 C460,284 472,288 490,285 L490,580 L-10,580 Z"
+          fill="url(#hillFar)" filter="url(#blur-edge)"/>
+
+    <!-- Mid hills — warm brown wash -->
+    <path d="M-10,460 C30,400 90,375 150,390 C200,402 240,370 300,358 C355,346 410,372 460,358 C472,354 482,358 490,356 L490,580 L-10,580 Z"
+          fill="url(#hillMid)" filter="url(#blur-edge)"/>
+
+    <!-- Closer foreground hill — dusty rose blush -->
+    <path d="M-10,510 C50,478 110,462 180,472 C240,480 290,455 360,462 C410,467 450,458 490,462 L490,580 L-10,580 Z"
+          fill="url(#hillFore)" filter="url(#blur-edge)"/>
+
+    <!-- Watercolour texture blobs — add painterly feel -->
+    <ellipse cx="60"  cy="490" rx="80" ry="28" fill="#A8B5A0" opacity="0.07" filter="url(#blur-soft)"/>
+    <ellipse cx="400" cy="505" rx="70" ry="22" fill="#C4A882" opacity="0.07" filter="url(#blur-soft)"/>
+    <ellipse cx="220" cy="530" rx="100" ry="20" fill="#D4A99A" opacity="0.06" filter="url(#blur-soft)"/>
+
+    <!-- Tiny birds (V shapes) — top right area, very faint -->
+    <g opacity="0.18" stroke="#7A6A60" stroke-width="1.2" fill="none" stroke-linecap="round">
+      <path d="M300,95 Q305,90 310,95"/>
+      <path d="M316,88 Q321,83 326,88"/>
+      <path d="M330,97 Q334,93 338,97"/>
+      <path d="M290,105 Q294,101 298,105"/>
+    </g>
+
+    <!-- Small tree silhouettes bottom left — watercolour style -->
+    <g opacity="0.10" fill="#A8B5A0" filter="url(#blur-edge)">
+      <ellipse cx="42"  cy="538" rx="18" ry="28"/>
+      <ellipse cx="58"  cy="548" rx="14" ry="22"/>
+      <ellipse cx="28"  cy="548" rx="12" ry="20"/>
+      <rect x="40" y="555" width="4" height="20" rx="2"/>
+    </g>
+
+    <!-- Small tree silhouettes bottom right -->
+    <g opacity="0.09" fill="#C4A882" filter="url(#blur-edge)">
+      <ellipse cx="438" cy="542" rx="16" ry="26"/>
+      <ellipse cx="452" cy="550" rx="12" ry="20"/>
+      <rect x="436" y="558" width="4" height="18" rx="2"/>
+    </g>
+
+  </svg>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!--              EDITABLE CONTENT              -->
+  <!-- ══════════════════════════════════════════ -->
+  <div class="content">
+
+    <!-- DECORATIVE ICON: small compass SVG, subtle -->
+    <div class="icon-wrap">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="16" cy="16" r="13" stroke="#C4A882" stroke-width="1" opacity="0.6"/>
+        <circle cx="16" cy="16" r="1.5" fill="#D4A99A" opacity="0.7"/>
+        <!-- N pointer -->
+        <polygon points="16,5 14.2,16 16,14 17.8,16" fill="#D4A99A" opacity="0.65"/>
+        <!-- S pointer -->
+        <polygon points="16,27 17.8,16 16,18 14.2,16" fill="#A8B5A0" opacity="0.45"/>
+      </svg>
+    </div>
+
+    <!-- MAIN TITLE — edit text here -->
+    <h1 class="gift-title">Travel Gift</h1>
+
+    <div class="divider">
+      <div class="divider-line"></div>
+      <div class="divider-dot"></div>
+      <div class="divider-line"></div>
+    </div>
+
+    <!-- GIFT AMOUNT — edit ₹ amount here -->
+    <p class="gift-worth">Worth ₹20,000</p>
+
+    <!-- VALIDITY DATE — edit date here -->
+    <p class="validity">Valid until 31 December 2026</p>
+
+    <!-- REACH OUT MESSAGE — edit message here -->
+    <div class="reach-out-wrap">
+      <p class="reach-out">
+        For details of vouchers,<br>reach out to us.
+      </p>
+    </div>
+
+    <!-- PS FOOTNOTE — edit PS text here -->
+    <div class="ps-wrap">
+      <p class="ps">
+        <span class="ps-label">P.S.</span> Don't let it expire.
+      </p>
+    </div>
+
+  </div>
+  <!-- ══════════════════════════════════════════ -->
+  <!--           END OF EDITABLE CONTENT          -->
+  <!-- ══════════════════════════════════════════ -->
+
+</div>
+
+</body>
+</html>
